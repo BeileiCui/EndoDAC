@@ -5,7 +5,7 @@ Depth estimation plays a crucial role in various tasks within endoscopic surgery
 
 ## Initialization
 
-Create an environment with Conda:
+Create an environment with conda:
 ```
 conda env create -f conda.yaml
 conda activate endodac
