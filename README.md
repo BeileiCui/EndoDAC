@@ -6,7 +6,7 @@ Depth estimation plays a crucial role in various tasks within endoscopic surgery
 ## Results
 
 | Method | Abs Rel | Sq Rel | RMSE | RMSE log | &delta; | Checkpoint| 
-|  :----:  | :----:  | :----:   |  :----:  | :----:  | :----:  | |
+|  :----:  | :----:  | :----:   |  :----:  | :----:  | :----:  | :----:  |
 | SfMLearner | 0.079 |	0.879 |	6.896 |	0.110 |	0.947 | |
 | Fang et al. | 0.078 |	0.794 |	6.794 |	0.109 |	0.946 | |
 |__EndoDAC (Ours)__ |__0.052__ |	__0.362__ |	__4.464__ |	__0.073__ |	__0.979__ | 
