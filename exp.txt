@@ -1,0 +1,131 @@
+------------------------------------------------------------ train end to end ---------------------------------------------------------------------------
+CUDA_VISIBLE_DEVICES=3 python train_end_to_end.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --log_dir './logs' \
+--num_epochs 40 --batch_size 8 --model_name da_finetune --use_atlora False --scales 0
+
+CUDA_VISIBLE_DEVICES=2 python train_end_to_end.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --log_dir './logs' \
+--num_epochs 30 --batch_size 8 --model_name endodac_wo_learnintrinsic --lora_type dvlora --residual_block_indexes 2 5 8 11
+
+CUDA_VISIBLE_DEVICES=3 python train_end_to_end.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --log_dir './logs' \
+--num_epochs 30 --batch_size 8 --model_name endodac_fullmodel11 --lora_type dvlora --residual_block_indexes 2 5 8 11 \
+--learn_intrinsics True
+
+CUDA_VISIBLE_DEVICES=2 python train_end_to_end.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --log_dir './logs' \
+--num_epochs 30 --batch_size 8 --model_name endodac_wo_dvlora --lora_type lora --residual_block_indexes 2 5 8 11 \
+--learn_intrinsics True
+
+CUDA_VISIBLE_DEVICES=2 python train_end_to_end.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --log_dir './logs' \
+--num_epochs 30 --batch_size 8 --model_name endodac_wo_residual --lora_type dvlora \
+--learn_intrinsics True
+
+CUDA_VISIBLE_DEVICES=3 python train_end_to_end.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --log_dir './logs' \
+--num_epochs 20 --batch_size 8 --model_name endodac_wo_dvlora_residual --lora_type lora \
+--learn_intrinsics True
+
+CUDA_VISIBLE_DEVICES=3 python train_end_to_end.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --log_dir './logs' \
+--num_epochs 50 --batch_size 8 --model_name endodac_wo_msheads --lora_type dvlora --residual_block_indexes 2 5 8 11 \
+--learn_intrinsics True
+
+CUDA_VISIBLE_DEVICES=1 python train_end_to_end.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --log_dir './logs' \
+--num_epochs 20 --batch_size 8 --model_name endodac_wo_dvlora_msheads --lora_type lora --residual_block_indexes 2 5 8 11 \
+--learn_intrinsics True
+
+CUDA_VISIBLE_DEVICES=1 python train_end_to_end.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --log_dir './logs' \
+--num_epochs 20 --batch_size 8 --model_name endodac_wo_residual_msheads --lora_type dvlora \
+--learn_intrinsics True
+
+------------------------------------------------------------ export gt depth (only need once) ------------------------------------------------------------
+CUDA_VISIBLE_DEVICES=0 python export_gt_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --split endovis
+
+------------------------------------------------------------ export gt poses (only need once) ------------------------------------------------------------
+python export_gt_pose.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --split endovis --sequence sequence2
+python export_gt_pose.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' --split endovis --sequence sequence1
+
+------------------------------------------------------------ evaulate model ------------------------------------------------------------------------------
+CUDA_VISIBLE_DEVICES=1 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/da_finetune/models/weights_39' --eval_mono --use_atlora False --visualize_depth
+
+CUDA_VISIBLE_DEVICES=1 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/dam_vitb_nores/models/weights_19' --eval_mono
+
+CUDA_VISIBLE_DEVICES=1 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/Model_MIA' --eval_mono --model_type afsfm
+
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/monodepth2' --eval_mono --visualize_depth \
+--ext_disp_to_eval '/mnt/data-hdd2/Beilei/Repository/EndoDAC/logs/monodepth2/disps_scared_split.npy'
+
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/endodac_wo_learnintrinsic/models/weights_19' --eval_mono \
+--lora_type dvlora --residual_block_indexes 2 5 8 11
+
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/endodac_fullmodel/models/weights_19' --eval_mono \
+--lora_type dvlora --residual_block_indexes 2 5 8 11
+
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/endodac_w_lora/models/weights_15' --eval_mono \
+--lora_type lora --residual_block_indexes 2 5 8 11
+
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/endodac_wo_gvlora/models/weights_16' --eval_mono \
+--lora_type none --residual_block_indexes 2 5 8 11
+
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/endodac_wo_msheads/models/weights_19' --eval_mono \
+--lora_type dvlora --residual_block_indexes 2 5 8 11
+
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/endodac_wo_dvlora_msheads/models/weights_18' --eval_mono \
+--lora_type lora --residual_block_indexes 2 5 8 11
+
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/endodac_wo_dvlora_residual/models/weights_15' --eval_mono \
+--lora_type lora
+
+------------------------------------------------------------ evaulate simple ------------------------------------------------------------------------------
+python test_simple.py --image_path './test' --model_path './logs/endodac_fullmodel/models/weights_19' --ext png
+
+
+------------------------------------------------------------ evaulate on other datasets ------------------------------------------------------------------------------
+CUDA_VISIBLE_DEVICES=2 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/Hamlyn' \
+--load_weights_folder './logs/vitendodepth_f1f2_reg_sig_scale_up/models/weights_17' --eval_mono --eval_split hamlyn
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/Hamlyn' \
+--load_weights_folder './logs/Model_MIA' --eval_mono --eval_split hamlyn
+
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/C3VD' \
+--load_weights_folder './logs/Model_MIA' --eval_mono --eval_split c3vd
+CUDA_VISIBLE_DEVICES=1 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/C3VD' \
+--load_weights_folder './logs/f1f2_convneck25811_rs_project_se_qa/models/weights_14' --eval_mono --eval_split c3vd
+
+CUDA_VISIBLE_DEVICES=2 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/Hamlyn' \
+--load_weights_folder './logs/endodac_wo_learnintrinsic/models/weights_19' --eval_mono --eval_split hamlyn \
+--lora_type dvlora --residual_block_indexes 2 5 8 11
+
+CUDA_VISIBLE_DEVICES=1 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/Hamlyn' \
+--load_weights_folder './logs/endodac_fullmodel/models/weights_19' --eval_mono --eval_split hamlyn \
+--lora_type dvlora --residual_block_indexes 2 5 8 11
+
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path '/mnt/data-hdd2/Beilei/Dataset/Hamlyn' \
+--load_weights_folder './logs/da_finetune/models/weights_39' --eval_mono --eval_split hamlyn \
+--lora_type none
+
+------------------------------------------------------------ evaulate poses ------------------------------------------------------------------------------
+CUDA_VISIBLE_DEVICES=1 python evaluate_pose.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/endodac_fullmodel/models/weights_19' --eval_mono --learn_intrinsics True
+
+CUDA_VISIBLE_DEVICES=1 python evaluate_pose.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/endodac_wo_learnintrinsic/models/weights_19' --eval_mono
+
+CUDA_VISIBLE_DEVICES=1 python evaluate_pose.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/Model_MIA' --eval_mono
+------------------------------------------------------------ 3d reconstruction ------------------------------------------------------------------------------
+CUDA_VISIBLE_DEVICES=3 python visualize_reconstruction.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/endodac_fullmodel/models/weights_19' --eval_mono \
+--lora_type dvlora --residual_block_indexes 2 5 8 11
+
+CUDA_VISIBLE_DEVICES=3 python visualize_reconstruction.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/da_finetune/models/weights_39' --eval_mono \
+--lora_type none
+
+CUDA_VISIBLE_DEVICES=3 python visualize_reconstruction.py --data_path '/mnt/data-hdd2/Beilei/Dataset/SCARED' \
+--load_weights_folder './logs/Model_MIA' --eval_mono --model_type afsfm
