@@ -7,6 +7,12 @@ Depth estimation plays a crucial role in various tasks within endoscopic surgery
 
 Create an environment with conda:
 ```
+conda create --name endodac python=3.9
+conda activate endodac
+conda install pytorch==2.0.0 torchvision==0.15.0 cudatoolkit=11.7 -c pytorch -c conda-forge
+```
+
+```
 conda env create -f conda.yaml
 conda activate endodac
 ```
