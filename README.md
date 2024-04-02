@@ -21,11 +21,10 @@ pip install -r requirements.txt
 
 ## Results
 
-| Method | Abs Rel | Sq Rel | RMSE | RMSE log | &delta; | Checkpoint| 
-|  :----:  | :----:  | :----:   |  :----:  | :----:  | :----:  | :----:  |
-| SfMLearner | 0.079 |	0.879 |	6.896 |	0.110 |	0.947 | - |
-| Fang et al. | 0.078 |	0.794 |	6.794 |	0.109 |	0.946 |- |
-| Endo-SfM | 0.062 |	0.606 |	5.726 |	0.093 |	0.957 |- |
-| AF-SfMLeaner | 0.059 |	0.435 |	4.925 |	0.082 |	0.974 |- |
-|__EndoDAC (Ours)__ |__0.052__ |	__0.362__ |	__4.464__ |	__0.073__ |	__0.979__ | [google_drive](https://drive.google.com/file/d/1qzAYBtwYJDN7hEi6pApqBOOz6pUhyY70/view?usp=drive_link) |
+| Method | Year | Abs Rel | Sq Rel | RMSE | RMSE log | &delta; | Checkpoint| 
+|  :----:  | :----:  | :----:   |  :----:  | :----:  | :----:  | :----:  | :----:  |
+| Fang et al. | 2020 | 0.078 |	0.794 |	6.794 |	0.109 |	0.946 |- |
+| Endo-SfM | 2021 | 0.062 |	0.606 |	5.726 |	0.093 |	0.957 |- |
+| AF-SfMLeaner | 2022 | 0.059 |	0.435 |	4.925 |	0.082 |	0.974 |- |
+|__EndoDAC (Ours)__ | | __0.052__ |	__0.362__ |	__4.464__ |	__0.073__ |	__0.979__ | [google_drive](https://drive.google.com/file/d/1qzAYBtwYJDN7hEi6pApqBOOz6pUhyY70/view?usp=drive_link) |
 
