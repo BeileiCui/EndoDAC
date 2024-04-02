@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ## Dataset
 
 ### SCARED
-Please follow [AF-SfMLearner](https://github.com/ShuweiShao/AF-SfMLearner)) to prepare the SCARED dataset.
+Please follow [AF-SfMLearner](https://github.com/ShuweiShao/AF-SfMLearner) to prepare the SCARED dataset.
 
 
 ## Results
