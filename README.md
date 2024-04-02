@@ -27,8 +27,10 @@ pip install -r requirements.txt
 ```
 
 Download pretrained model from: [depth_anything_vitb14](https://drive.google.com/file/d/163ILZcnz_-IUoIgy1UF_r7PAQBqgDbll/view?usp=sharing). Create a folder named ```pretrained_model``` in this repo and place the downloaded model in it.
-## Dataset
 
+## Dataset
+### SCARED
+Please follow [AF-SfMLearner](https://github.com/ShuweiShao/AF-SfMLearner) to prepare the SCARED dataset.
 
 
 
