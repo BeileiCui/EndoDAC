@@ -39,14 +39,14 @@ Please follow [AF-SfMLearner](https://github.com/ShuweiShao/AF-SfMLearner) to pr
 CUDA_VISIBLE_DEVICES=0 python train_end_to_end.py --data_path <your_data_path> --log_dir './logs'
 ```
 
-### Export ground truth depth and pose before evaluation
+### Evaluation
+
+Export ground truth depth and pose before evaluation:
 ```
 CUDA_VISIBLE_DEVICES=0 python export_gt_depth.py --data_path <your_data_path> --split endovis
 python export_gt_pose.py --data_path <your_data_path> --split endovis --sequence sequence2
 python export_gt_pose.py --data_path <your_data_path> --split endovis --sequence sequence1
 ```
-
-### Evaluation
 
 Assume to evaluate the epoch 19 weights of a model named ```endodac```:
 ```
