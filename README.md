@@ -32,5 +32,8 @@ Download pretrained model from: [depth_anything_vitb14](https://drive.google.com
 ### SCARED
 Please follow [AF-SfMLearner](https://github.com/ShuweiShao/AF-SfMLearner) to prepare the SCARED dataset.
 
-
+## Training
+```
+CUDA_VISIBLE_DEVICES=0 python train_end_to_end.py --data_path <your_data_path> --log_dir './logs'
+```
 
