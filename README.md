@@ -26,7 +26,7 @@ Install required dependencies with pip:
 pip install -r requirements.txt
 ```
 
-Download pretrained models from: [depth_anything_vitb14](https://drive.google.com/file/d/163ILZcnz_-IUoIgy1UF_r7PAQBqgDbll/view?usp=sharing) and place it in ```pretrained_model/```
+Download pretrained model from: [depth_anything_vitb14](https://drive.google.com/file/d/163ILZcnz_-IUoIgy1UF_r7PAQBqgDbll/view?usp=sharing). Create a folder named '''pretrained_model''' in this repo and place the downloaded model in it.
 ## Dataset
 
 
