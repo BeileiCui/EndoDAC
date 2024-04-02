@@ -48,13 +48,17 @@ python export_gt_pose.py --data_path <your_data_path> --split endovis --sequence
 python export_gt_pose.py --data_path <your_data_path> --split endovis --sequence sequence1
 ```
 
-Assume to evaluate the epoch 19 weights of a model named ```endodac```:
+Assume to evaluate the epoch 19 weights of a __depth estimation model__ named ```endodac```:
 ```
 CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path <your_data_path> \
 --load_weights_folder './logs/endodac/models/weights_19' --eval_mono
 ```
 
-
+Assume to evaluate the epoch 19 weights of a __pose and intrinsic estimation model__ named ```endodac```:
+```
+CUDA_VISIBLE_DEVICES=0 python evaluate_pose.py --data_path <your_data_path> \
+--load_weights_folder './logs/endodac/models/weights_19' --eval_mono
+```
 
 
 
