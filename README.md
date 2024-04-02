@@ -32,8 +32,30 @@ Download pretrained model from: [depth_anything_vitb14](https://drive.google.com
 ### SCARED
 Please follow [AF-SfMLearner](https://github.com/ShuweiShao/AF-SfMLearner) to prepare the SCARED dataset.
 
-## Training
+## Utilization
+
+### Training
 ```
 CUDA_VISIBLE_DEVICES=0 python train_end_to_end.py --data_path <your_data_path> --log_dir './logs'
 ```
+
+### Export ground truth depth and pose before evaluation
+```
+CUDA_VISIBLE_DEVICES=0 python export_gt_depth.py --data_path <your_data_path> --split endovis
+python export_gt_pose.py --data_path <your_data_path> --split endovis --sequence sequence2
+python export_gt_pose.py --data_path <your_data_path> --split endovis --sequence sequence1
+```
+
+### Evaluation
+
+Assume to evaluate the epoch 19 weights of a model named ```endodac```:
+```
+CUDA_VISIBLE_DEVICES=0 python evaluate_depth.py --data_path <your_data_path> \
+--load_weights_folder './logs/endodac/models/weights_19' --eval_mono
+```
+
+
+
+
+
 
