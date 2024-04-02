@@ -51,7 +51,7 @@ class MonodepthOptions:
                                  nargs="*",
                                  type=int,
                                  help="indexes for residual blocks in vitendodepth encoder",
-                                 default=[])
+                                 default=[2,5,8,11])
         self.parser.add_argument("--include_cls_token",
                                  type=str2bool,
                                  help="includes the cls token in the transformer blocks",
@@ -59,12 +59,12 @@ class MonodepthOptions:
         self.parser.add_argument("--learn_intrinsics",
                                  type=str2bool,
                                  help="learn the camera intrinsics with a seperate decoder",
-                                 default=False)
+                                 default=True)
         # TRAINING options
         self.parser.add_argument("--model_name",
                                  type=str,
                                  help="the name of the folder to save the model in",
-                                 default="surgicalda")
+                                 default="endodac")
         self.parser.add_argument("--split",
                                  type=str,
                                  help="which training split to use",
