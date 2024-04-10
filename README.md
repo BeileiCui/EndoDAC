@@ -60,6 +60,7 @@ CUDA_VISIBLE_DEVICES=0 python evaluate_pose.py --data_path <your_data_path> \
 --load_weights_folder './logs/endodac/models/weights_19' --eval_mono
 ```
 
-
+## Acknowledgment
+Our code is based on the implementation of [AF-SfMLearner](https://github.com/ShuweiShao/AF-SfMLearner), [Depth-Anything](https://github.com/LiheYoung/Depth-Anything). We thank their excellent works.
 
 
