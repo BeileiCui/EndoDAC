@@ -1,4 +1,4 @@
-# EndoDAC: Efficient Adapting Foundation Model for Self-Supervised Depth Estimation from Any Endoscopic Camera
+# [MICCAI'2024] EndoDAC: Efficient Adapting Foundation Model for Self-Supervised Depth Estimation from Any Endoscopic Camera
 
 ![Image](https://github.com/BeileiCui/EndoDAC/blob/main/assets/main.jpg)
 
